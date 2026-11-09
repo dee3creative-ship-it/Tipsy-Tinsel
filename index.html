@@ -8,17 +8,29 @@
 <style>
 :root {
   /* Layout: one centered invitation column. Champagne tower up top, event details, RSVP card, live guest list, host-only tools at the bottom. */
-  --ink: #170a10;
-  --plum: #251119;
-  --line: #4d2d3b;
-  --cream: #f7ecd6;
-  --mute: #c4aca6;
-  --gold: #e5c37b;
+  --ink: #170611;
+  --plum: #2c0a1d;
+  --line: #7f3459;
+  --cream: #eef1f5;
+  --mute: #d2b0c1;
   --tinsel: #cfd8dc;
   --blush: #eaa9b6;
   --silver: #d3dbe1;
   --silver-hi: #f6f9fb;
   --silver-lo: #8e9ba6;
+  --rose: #e6a3bf;
+  --cran: #9d2655;
+  --cran-hi: #c8467f;
+  --burg: #5a1f3e;
+  --burg-deep: #3b1429;
+  --cran-glow: rgba(176, 70, 120, 0.24);
+  --bg-top: #4a1832;
+  --bg-mid: #321222;
+  --bg-bot: #3b1428;
+  --copper: #d68f78;
+  --copper-dk: #a35d4d;
+  --jade: #a9d3b4;
+  --coat: #33242f;
   --glow: rgba(207, 216, 220, 0.12);
   --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
   --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -26,9 +38,13 @@
 }
 * { box-sizing: border-box; }
 body {
-  background: var(--ink) radial-gradient(ellipse 80% 420px at 50% 0, var(--glow), transparent 70%) no-repeat;
+  background-color: var(--bg-mid);
+  background-image: radial-gradient(ellipse 90% 460px at 50% 0, var(--cran-glow), transparent 72%), radial-gradient(ellipse 80% 360px at 50% 100%, var(--cran-glow), transparent 75%), linear-gradient(180deg, var(--bg-top), var(--bg-mid) 42%, var(--bg-bot));
+  background-repeat: no-repeat;
   color: var(--cream);
   font: 400 16px/1.55 var(--font-body);
+  min-height: 100vh;
+  min-height: 100dvh;
   padding-block: 28px 64px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -37,14 +53,14 @@ body {
 h1, h2 { font-family: var(--font-display); font-style: italic; font-weight: 500; margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(3.2rem, 15vw, 5.6rem); line-height: 0.95; letter-spacing: -0.01em; color: var(--cream); }
 h2 { font-size: 1.75rem; line-height: 1.1; }
-.eyebrow { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); font-weight: 600; }
+.eyebrow { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); font-weight: 600; }
 p { margin: 0; }
 
 /* hero */
 .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
-.tower { width: min(300px, 78%); height: auto; overflow: visible; }
+.tower { width: min(340px, 92%); height: auto; overflow: visible; }
 .hosts { color: var(--mute); }
-.rule { width: 100%; height: 7px; opacity: 0.6; background: repeating-linear-gradient(100deg, var(--silver-hi) 0 2px, transparent 2px 7px, var(--silver-lo) 7px 8px, transparent 8px 12px, var(--silver) 12px 13px, transparent 13px 18px); }
+.rule { width: 100%; height: 7px; opacity: 0.6; background: repeating-linear-gradient(100deg, var(--silver-hi) 0 2px, transparent 2px 7px, var(--cran-hi) 7px 9px, transparent 9px 14px, var(--silver) 14px 15px, transparent 15px 20px, var(--rose) 20px 21px, transparent 21px 26px); }
 .bubble { fill: var(--cream); opacity: 0; animation: rise 3.4s ease-in infinite; }
 .b2 { animation-delay: 0.9s; } .b3 { animation-delay: 1.7s; } .b4 { animation-delay: 2.4s; } .b5 { animation-delay: 0.4s; }
 .spark { fill: var(--tinsel); transform-box: fill-box; transform-origin: center; animation: twinkle 2.8s ease-in-out infinite; }
@@ -57,14 +73,14 @@ p { margin: 0; }
 .details { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
 .row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
 .row:last-child { border-bottom: 1px solid var(--line); }
-.row dt { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); font-weight: 600; padding-top: 0.3em; }
+.row dt { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); font-weight: 600; padding-top: 0.3em; }
 .row dd { margin: 0; min-width: 0; }
 .big { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; }
 .sub { color: var(--mute); margin-top: 2px; }
 .cal { display: inline-block; margin-top: 8px; color: var(--silver-hi); font-size: 0.9rem; text-underline-offset: 3px; }
 
 /* rsvp */
-.card { background: var(--plum); border: 1px solid var(--silver-lo); border-radius: 4px; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px; }
+.card { background: linear-gradient(165deg, var(--burg), var(--burg-deep)); border: 1px solid var(--silver-lo); border-radius: 4px; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px; }
 .card h2 { margin-bottom: -4px; }
 .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
 label.lbl, .legend { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
@@ -84,7 +100,7 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
 .seg input:checked + label { background: linear-gradient(180deg, var(--silver-hi), var(--silver)); color: var(--ink); border-color: var(--silver-hi); font-weight: 600; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 button { font: inherit; cursor: pointer; border-radius: 3px; min-height: 46px; padding: 0 20px; }
-.primary { background: linear-gradient(180deg, var(--silver-hi), var(--silver) 60%, var(--silver-lo)); color: var(--ink); border: 1px solid var(--silver-hi); font-weight: 600; letter-spacing: 0.02em; }
+.primary { background: linear-gradient(180deg, var(--silver-hi), var(--silver) 60%, var(--silver-lo)); color: var(--ink); border: 1px solid var(--silver-hi); font-weight: 600; letter-spacing: 0.02em; box-shadow: 0 8px 22px -10px var(--cran-hi); }
 .primary:disabled { opacity: 0.6; cursor: progress; }
 .ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); }
 .msg { min-height: 1.4em; color: var(--silver-hi); font-size: 0.95rem; }
@@ -94,9 +110,9 @@ button { font: inherit; cursor: pointer; border-radius: 3px; min-height: 46px; p
 /* guest list */
 .listhead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
 .tally { color: var(--mute); font-variant-numeric: tabular-nums; }
-.tally b { color: var(--cream); font-weight: 600; }
+.tally b { color: var(--silver-hi); font-weight: 600; }
 .group { margin-top: 20px; }
-.group h3 { margin: 0 0 4px; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); font-weight: 600; }
+.group h3 { margin: 0 0 4px; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); font-weight: 600; }
 ul.guests { list-style: none; margin: 0; padding: 0; }
 ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); min-width: 0; }
 .gname { font-family: var(--font-display); font-size: 1.2rem; min-width: 0; overflow-wrap: anywhere; }
@@ -111,8 +127,13 @@ ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0;
 @media (min-width: 520px) { .host form { grid-template-columns: 1fr 9rem 8rem auto; align-items: end; } }
 .foot { text-align: center; color: var(--mute); font-size: 0.85rem; }
 
+/* cats */
+.perch { position: relative; z-index: 2; display: flex; justify-content: flex-end; padding-right: 14px; margin-bottom: -1px; pointer-events: none; }
+.perch svg { width: min(220px, 62%); height: auto; display: block; overflow: visible; }
 /* silver theme */
 .wrap { position: relative; z-index: 1; }
+::selection { background: var(--cran-hi); color: var(--silver-hi); }
+.spark.s2 { fill: var(--rose); }
 #snow { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 h1 {
   padding: 0 0.06em 0.1em;
@@ -132,17 +153,85 @@ h1 {
 
 <main class="wrap">
   <header class="hero">
-    <svg class="tower" viewBox="0 0 240 156" role="img" aria-label="A pyramid of champagne coupes">
+    <svg class="tower" viewBox="-30 0 300 156" role="img" aria-label="A pyramid of champagne coupes with a ginger cat peeking over the tray at the glasses">
       <defs>
+        <linearGradient id="silverG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" style="stop-color:var(--silver-hi)"/>
+          <stop offset="0.45" style="stop-color:var(--silver)"/>
+          <stop offset="1" style="stop-color:var(--silver-lo)"/>
+        </linearGradient>
+        <radialGradient id="cranGlow" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" style="stop-color:var(--cran-hi);stop-opacity:0.38"/>
+          <stop offset="1" style="stop-color:var(--cran-hi);stop-opacity:0"/>
+        </radialGradient>
+        <linearGradient id="chromeH" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" style="stop-color:var(--silver-lo)"/>
+          <stop offset="0.14" style="stop-color:var(--silver-hi)"/>
+          <stop offset="0.32" style="stop-color:var(--silver)"/>
+          <stop offset="0.5" style="stop-color:var(--silver-lo)"/>
+          <stop offset="0.68" style="stop-color:var(--silver-hi)"/>
+          <stop offset="0.86" style="stop-color:var(--silver)"/>
+          <stop offset="1" style="stop-color:var(--silver-lo)"/>
+        </linearGradient>
+        <linearGradient id="shadeV" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" style="stop-color:var(--ink);stop-opacity:0"/>
+          <stop offset="0.55" style="stop-color:var(--ink);stop-opacity:0.12"/>
+          <stop offset="1" style="stop-color:var(--ink);stop-opacity:0.5"/>
+        </linearGradient>
+        <linearGradient id="fizz" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" style="stop-color:var(--silver-hi)"/>
+          <stop offset="1" style="stop-color:var(--silver)"/>
+        </linearGradient>
         <symbol id="coupe" viewBox="0 0 40 36" overflow="visible">
-          <path d="M1 2 H39 C39 15 30 23 20 23 C10 23 1 15 1 2Z" style="fill:var(--gold);fill-opacity:0.88;stroke:var(--tinsel);stroke-width:1.2"/>
-          <path d="M3 2 H37" style="stroke:var(--cream);stroke-width:1.4;stroke-linecap:round"/>
-          <rect x="19.2" y="23" width="1.6" height="9" style="fill:var(--tinsel)"/>
-          <ellipse cx="20" cy="33" rx="9" ry="2.2" style="fill:var(--tinsel)"/>
+          <ellipse cx="20" cy="34.6" rx="10.5" ry="1.3" style="fill:var(--ink);opacity:0.4"/>
+          <ellipse cx="20" cy="33" rx="10" ry="2.6" style="fill:url(#chromeH)"/>
+          <ellipse cx="20" cy="32.3" rx="8.4" ry="1.7" style="fill:var(--silver-hi);opacity:0.75"/>
+          <path d="M19 22.5 L21 22.5 L21.6 31.5 L18.4 31.5Z" style="fill:url(#chromeH)"/>
+          <ellipse cx="20" cy="27.2" rx="2.4" ry="1.7" style="fill:url(#chromeH);stroke:var(--silver-lo);stroke-width:0.3"/>
+          <path d="M1 3 C1 15 10 23.5 20 23.5 C30 23.5 39 15 39 3 Z" style="fill:url(#chromeH)"/>
+          <path d="M1 3 C1 15 10 23.5 20 23.5 C30 23.5 39 15 39 3 Z" style="fill:url(#shadeV)"/>
+          <ellipse cx="20" cy="3" rx="19" ry="3" style="fill:var(--silver-hi);stroke:var(--silver-hi);stroke-width:0.6"/>
+          <ellipse cx="20" cy="3.3" rx="17.2" ry="2.2" style="fill:url(#fizz)"/>
+          <ellipse cx="20" cy="3.3" rx="17.2" ry="2.2" style="fill:var(--rose);opacity:0.14"/>
+          <circle cx="13" cy="3.1" r="0.55" style="fill:var(--silver-hi)"/>
+          <circle cx="24" cy="3.7" r="0.45" style="fill:var(--silver-hi)"/>
+          <circle cx="28" cy="3" r="0.4" style="fill:var(--silver-hi)"/>
+          <path d="M1.6 4.5 C4 7 14 6.2 20 6 C26 6.2 36 7 38.4 4.5" style="fill:none;stroke:var(--silver-hi);stroke-width:0.7;opacity:0.7"/>
+          <path d="M4.8 7.5 C5.8 13 9.5 17.5 14.5 20" style="fill:none;stroke:var(--silver-hi);stroke-width:1.7;stroke-linecap:round;opacity:0.95"/>
+          <path d="M33.5 8 C33 12 31.2 15.2 28.6 17.4" style="fill:none;stroke:var(--silver-hi);stroke-width:1;stroke-linecap:round;opacity:0.55"/>
+          <path d="M29.5 17.5 C27 20.4 23.8 21.8 20.6 22" style="fill:none;stroke:var(--cran-hi);stroke-width:1.1;stroke-linecap:round;opacity:0.75"/>
         </symbol>
+        <clipPath id="catclip"><rect x="180" y="60" width="90" height="83.5"/></clipPath>
         <path id="star" d="M0 -6 L1.4 -1.4 L6 0 L1.4 1.4 L0 6 L-1.4 1.4 L-6 0 L-1.4 -1.4Z"/>
       </defs>
-      <ellipse cx="120" cy="143" rx="112" ry="6" style="fill:var(--plum);stroke:var(--line)"/>
+      <ellipse cx="120" cy="92" rx="150" ry="95" style="fill:url(#cranGlow)"/>
+      <g clip-path="url(#catclip)">
+        <g transform="translate(222 117)">
+          <path d="M-16 -9 L-19 -28 L-5 -15Z" style="fill:var(--copper)"/>
+          <path d="M16 -9 L19 -28 L5 -15Z" style="fill:var(--copper)"/>
+          <path d="M-14.5 -13 L-16 -23 L-8 -15Z" style="fill:var(--rose)"/>
+          <path d="M14.5 -13 L16 -23 L8 -15Z" style="fill:var(--rose)"/>
+          <ellipse cx="0" cy="21" rx="14" ry="13" style="fill:var(--silver-hi)"/>
+          <ellipse cx="0" cy="0" rx="18" ry="15" style="fill:var(--copper)"/>
+          <path d="M0 -14 V-8 M-5 -13.5 L-4 -8.5 M5 -13.5 L4 -8.5" style="fill:none;stroke:var(--copper-dk);stroke-width:1.2;stroke-linecap:round"/>
+          <ellipse cx="0" cy="7" rx="9" ry="6.5" style="fill:var(--silver-hi)"/>
+          <circle cx="-7.5" cy="-1" r="3.8" style="fill:var(--jade)"/>
+          <circle cx="7.5" cy="-1" r="3.8" style="fill:var(--jade)"/>
+          <circle cx="-8.5" cy="-1" r="2" style="fill:var(--ink)"/>
+          <circle cx="6.5" cy="-1" r="2" style="fill:var(--ink)"/>
+          <circle cx="-9.2" cy="-2.1" r="0.7" style="fill:var(--silver-hi)"/>
+          <circle cx="5.8" cy="-2.1" r="0.7" style="fill:var(--silver-hi)"/>
+          <path d="M-2.4 3 H2.4 L0 5.6Z" style="fill:var(--rose)"/>
+          <path d="M0 5.6 V7.2 M0 7.2 Q-2.2 8.8 -4 7.6 M0 7.2 Q2.2 8.8 4 7.6" style="fill:none;stroke:var(--ink);stroke-width:0.8;opacity:0.6;stroke-linecap:round"/>
+          <path d="M-9 6 L-26 3.5 M-9 8.5 L-25 10.5 M9 6 L26 3.5 M9 8.5 L25 10.5" style="fill:none;stroke:var(--silver-hi);stroke-width:0.6;opacity:0.7"/>
+          <path d="M-11 14 Q0 19.5 11 14" style="fill:none;stroke:var(--silver);stroke-width:2.2;stroke-linecap:round"/>
+          <circle cx="-3" cy="19.5" r="2.6" style="fill:var(--silver-lo);stroke:var(--silver-hi);stroke-width:0.6"/>
+        </g>
+      </g>
+      
+      <ellipse cx="120" cy="143" rx="112" ry="6" style="fill:var(--burg);stroke:var(--silver-lo)"/>
+      <ellipse cx="213" cy="141.5" rx="5.2" ry="3.6" style="fill:var(--silver-hi);stroke:var(--silver-lo);stroke-width:0.5"/>
+      <ellipse cx="231" cy="141.5" rx="5.2" ry="3.6" style="fill:var(--silver-hi);stroke:var(--silver-lo);stroke-width:0.5"/>
       <use href="#coupe" x="34" y="104" width="40" height="36"/>
       <use href="#coupe" x="78" y="104" width="40" height="36"/>
       <use href="#coupe" x="122" y="104" width="40" height="36"/>
@@ -153,11 +242,11 @@ h1 {
       <use href="#coupe" x="78" y="40" width="40" height="36"/>
       <use href="#coupe" x="122" y="40" width="40" height="36"/>
       <use href="#coupe" x="100" y="8" width="40" height="36"/>
-      <circle class="bubble b1" cx="114" cy="16" r="1.6"/>
-      <circle class="bubble b2" cx="124" cy="18" r="1.3"/>
-      <circle class="bubble b3" cx="119" cy="14" r="1.1"/>
-      <circle class="bubble b4" cx="132" cy="17" r="1.4"/>
-      <circle class="bubble b5" cx="108" cy="18" r="1.1"/>
+      <circle class="bubble b1" cx="114" cy="12" r="1.6"/>
+      <circle class="bubble b2" cx="124" cy="13" r="1.3"/>
+      <circle class="bubble b3" cx="119" cy="11" r="1.1"/>
+      <circle class="bubble b4" cx="132" cy="12.5" r="1.4"/>
+      <circle class="bubble b5" cx="108" cy="13" r="1.1"/>
       <use class="spark s1" href="#star" x="26" y="40"/>
       <use class="spark s2" href="#star" x="216" y="26"/>
       <use class="spark s3" href="#star" x="208" y="82"/>
@@ -190,9 +279,53 @@ h1 {
         <p class="sub">Drink stations and light apps all night.</p>
       </dd>
     </div>
+    <div class="row">
+      <dt>Bring</dt>
+      <dd><p class="big">Your favorite thing</p></dd>
+    </div>
   </dl>
 
   <section aria-labelledby="rsvp-h">
+    <div class="perch">
+      <svg viewBox="0 0 200 92" role="img" aria-label="A black and white tabby cat in a red plaid bow tie, loafing on top of the RSVP card with its tail hanging over the front">
+        <defs>
+          <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" style="stop-color:var(--silver-hi)"/>
+            <stop offset="1" style="stop-color:var(--silver)"/>
+          </linearGradient>
+          <pattern id="plaid" width="6" height="6" patternUnits="userSpaceOnUse">
+            <rect width="6" height="6" style="fill:var(--cran)"/>
+            <rect y="2" width="6" height="1.4" style="fill:var(--ink);opacity:0.55"/>
+            <rect x="2" width="1.4" height="6" style="fill:var(--ink);opacity:0.55"/>
+            <rect y="4.6" width="6" height="0.6" style="fill:var(--rose);opacity:0.7"/>
+          </pattern>
+        </defs>
+        <path d="M178 80 C192 82 199 94 197 114" style="fill:none;stroke:var(--silver-lo);stroke-width:10;stroke-linecap:round"/>
+        <path d="M178 80 C192 82 199 94 197 114" style="fill:none;stroke:var(--coat);stroke-width:7;stroke-linecap:round"/>
+        <path d="M191.5 92 L199 94 M194 101 L201 102.5 M195.5 109 L201.5 109.5" style="fill:none;stroke:var(--silver);stroke-width:1.6;stroke-linecap:round"/>
+        <path d="M52 90 C50 64 74 50 106 48 C146 44 186 56 188 78 C189 86 186 90 180 90 Z" style="fill:url(#fur);stroke:var(--silver-lo);stroke-width:0.6"/>
+        <path d="M112 48 C150 40 188 54 189 80 C170 66 140 62 118 70 C112 62 110 54 112 48Z" style="fill:var(--coat);stroke:var(--silver-lo);stroke-width:0.8"/>
+        <path d="M112 48 C150 40 188 54 189 80" style="fill:none;stroke:var(--silver);stroke-width:0.8;opacity:0.7"/>
+        <ellipse cx="88" cy="77" rx="12" ry="8" style="fill:var(--coat);stroke:var(--silver-lo);stroke-width:0.8"/>
+        <ellipse cx="38" cy="88.5" rx="17" ry="5.5" style="fill:var(--silver-hi);stroke:var(--silver-lo);stroke-width:0.6"/>
+        <path d="M36 44 L30 28 L48 38Z" style="fill:var(--coat);stroke:var(--silver-lo);stroke-width:0.8"/>
+        <path d="M54 40 L60 24 L69 42Z" style="fill:var(--silver-lo)"/>
+        <path d="M56.5 40 L60 29 L65 41Z" style="fill:var(--rose);opacity:0.8"/>
+        <ellipse cx="50" cy="62" rx="22" ry="19" style="fill:var(--silver-lo)"/>
+        <path d="M29 56 C29 42 44 38 53 45 C46 49 38 53 34 64Z" style="fill:var(--coat);stroke:var(--silver-lo);stroke-width:0.6"/>
+        <path d="M52 46 V52 M58 47 V53 M63 50 L61 55 M66 58 L61 59" style="fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linecap:round;opacity:0.7"/>
+        <ellipse cx="38" cy="71" rx="14" ry="10" style="fill:var(--silver-hi)"/>
+        <ellipse cx="25" cy="67" rx="2.6" ry="2" style="fill:var(--rose)"/>
+        <path d="M33 62 Q38.5 57 44.5 62 Q38.5 65.5 33 62Z" style="fill:var(--jade)"/>
+        <ellipse cx="37.5" cy="61.8" rx="1.3" ry="2.4" style="fill:var(--ink)"/>
+        <path d="M32 58.5 Q38 54 45 58.5" style="fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round;opacity:0.8"/>
+        <path d="M27 70 L6 66 M27 72 L5 72 M28 74 L8 78" style="fill:none;stroke:var(--silver-hi);stroke-width:0.6;opacity:0.85"/>
+        <path d="M63 74 Q73 67 79 57" style="fill:none;stroke:url(#plaid);stroke-width:3.4;stroke-linecap:round"/>
+        <path d="M56 81 L41 74 L43 87Z" style="fill:url(#plaid);stroke:var(--ink);stroke-width:0.4"/>
+        <path d="M56 81 L71 77 L69 89Z" style="fill:url(#plaid);stroke:var(--ink);stroke-width:0.4"/>
+        <circle cx="56" cy="81" r="3" style="fill:var(--cran-hi);stroke:var(--ink);stroke-width:0.4"/>
+      </svg>
+    </div>
     <form class="card" id="rsvp" novalidate>
       <h2 id="rsvp-h">Will you be there?</h2>
       <div class="field">
@@ -318,9 +451,11 @@ h1 {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { cv.hidden = true; return; }
   var ctx = cv.getContext('2d');
   var W = 0, H = 0, flakes = [];
-  var color = (getComputedStyle(document.documentElement).getPropertyValue('--silver-hi') || '#f6f9fb').trim();
+  var cs = getComputedStyle(document.documentElement);
+  var color = (cs.getPropertyValue('--silver-hi') || '#f6f9fb').trim();
+  var rose = (cs.getPropertyValue('--rose') || '#e6a3bf').trim();
   function make(init) {
-    return { x: Math.random() * W, y: init ? Math.random() * H : -8, r: 0.6 + Math.random() * 1.9, v: 0.25 + Math.random() * 0.6, a: 0.25 + Math.random() * 0.5, p: Math.random() * 6.28, s: 0.4 + Math.random() * 0.8 };
+    return { x: Math.random() * W, y: init ? Math.random() * H : -8, r: 0.6 + Math.random() * 1.9, v: 0.25 + Math.random() * 0.6, a: 0.25 + Math.random() * 0.5, p: Math.random() * 6.28, s: 0.4 + Math.random() * 0.8, c: Math.random() < 0.16 };
   }
   function size() {
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -338,6 +473,7 @@ h1 {
       var f = flakes[i];
       f.y += f.v; f.p += 0.012 * f.s;
       if (f.y > H + 8) { flakes[i] = f = make(false); }
+      ctx.fillStyle = f.c ? rose : color;
       ctx.globalAlpha = f.a;
       ctx.beginPath();
       ctx.arc(f.x + Math.sin(f.p) * 14 * f.s, f.y, f.r, 0, 6.2832);
