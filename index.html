@@ -16,7 +16,10 @@
   --gold: #e5c37b;
   --tinsel: #cfd8dc;
   --blush: #eaa9b6;
-  --glow: rgba(229, 195, 123, 0.13);
+  --silver: #d3dbe1;
+  --silver-hi: #f6f9fb;
+  --silver-lo: #8e9ba6;
+  --glow: rgba(207, 216, 220, 0.12);
   --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
   --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color-scheme: dark;
@@ -34,14 +37,14 @@ body {
 h1, h2 { font-family: var(--font-display); font-style: italic; font-weight: 500; margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(3.2rem, 15vw, 5.6rem); line-height: 0.95; letter-spacing: -0.01em; color: var(--cream); }
 h2 { font-size: 1.75rem; line-height: 1.1; }
-.eyebrow { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.eyebrow { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); font-weight: 600; }
 p { margin: 0; }
 
 /* hero */
 .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
 .tower { width: min(300px, 78%); height: auto; overflow: visible; }
 .hosts { color: var(--mute); }
-.rule { width: 100%; height: 7px; opacity: 0.6; background: repeating-linear-gradient(100deg, var(--gold) 0 2px, transparent 2px 8px, var(--tinsel) 8px 9px, transparent 9px 15px); }
+.rule { width: 100%; height: 7px; opacity: 0.6; background: repeating-linear-gradient(100deg, var(--silver-hi) 0 2px, transparent 2px 7px, var(--silver-lo) 7px 8px, transparent 8px 12px, var(--silver) 12px 13px, transparent 13px 18px); }
 .bubble { fill: var(--cream); opacity: 0; animation: rise 3.4s ease-in infinite; }
 .b2 { animation-delay: 0.9s; } .b3 { animation-delay: 1.7s; } .b4 { animation-delay: 2.4s; } .b5 { animation-delay: 0.4s; }
 .spark { fill: var(--tinsel); transform-box: fill-box; transform-origin: center; animation: twinkle 2.8s ease-in-out infinite; }
@@ -54,14 +57,14 @@ p { margin: 0; }
 .details { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
 .row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
 .row:last-child { border-bottom: 1px solid var(--line); }
-.row dt { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; padding-top: 0.3em; }
+.row dt { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); font-weight: 600; padding-top: 0.3em; }
 .row dd { margin: 0; min-width: 0; }
 .big { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; }
 .sub { color: var(--mute); margin-top: 2px; }
-.cal { display: inline-block; margin-top: 8px; color: var(--gold); font-size: 0.9rem; text-underline-offset: 3px; }
+.cal { display: inline-block; margin-top: 8px; color: var(--silver-hi); font-size: 0.9rem; text-underline-offset: 3px; }
 
 /* rsvp */
-.card { background: var(--plum); border: 1px solid var(--line); border-radius: 4px; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px; }
+.card { background: var(--plum); border: 1px solid var(--silver-lo); border-radius: 4px; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px; }
 .card h2 { margin-bottom: -4px; }
 .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
 label.lbl, .legend { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
@@ -71,20 +74,20 @@ input[type="text"], select {
   border: 1px solid var(--line); border-radius: 3px; padding: 12px 12px; min-height: 46px;
 }
 input[type="text"]::placeholder { color: var(--mute); opacity: 0.7; }
-input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, .seg input:focus-visible + label { outline: 2px solid var(--gold); outline-offset: 2px; }
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, .seg input:focus-visible + label { outline: 2px solid var(--silver-hi); outline-offset: 2px; }
 .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .seg input { position: absolute; opacity: 0; pointer-events: none; }
 .seg label {
   display: flex; align-items: center; justify-content: center; text-align: center; min-height: 46px; padding: 8px 6px;
   border: 1px solid var(--line); border-radius: 3px; cursor: pointer; font-weight: 500; font-size: 0.95rem; background: var(--ink);
 }
-.seg input:checked + label { background: var(--gold); color: var(--ink); border-color: var(--gold); font-weight: 600; }
+.seg input:checked + label { background: linear-gradient(180deg, var(--silver-hi), var(--silver)); color: var(--ink); border-color: var(--silver-hi); font-weight: 600; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 button { font: inherit; cursor: pointer; border-radius: 3px; min-height: 46px; padding: 0 20px; }
-.primary { background: var(--gold); color: var(--ink); border: 1px solid var(--gold); font-weight: 600; letter-spacing: 0.02em; }
+.primary { background: linear-gradient(180deg, var(--silver-hi), var(--silver) 60%, var(--silver-lo)); color: var(--ink); border: 1px solid var(--silver-hi); font-weight: 600; letter-spacing: 0.02em; }
 .primary:disabled { opacity: 0.6; cursor: progress; }
 .ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); }
-.msg { min-height: 1.4em; color: var(--gold); font-size: 0.95rem; }
+.msg { min-height: 1.4em; color: var(--silver-hi); font-size: 0.95rem; }
 .msg.warn { color: var(--blush); }
 .copybox { width: 100%; font: inherit; font-size: 0.9rem; color: var(--cream); background: var(--ink); border: 1px dashed var(--line); border-radius: 3px; padding: 10px 12px; resize: none; }
 
@@ -93,7 +96,7 @@ button { font: inherit; cursor: pointer; border-radius: 3px; min-height: 46px; p
 .tally { color: var(--mute); font-variant-numeric: tabular-nums; }
 .tally b { color: var(--cream); font-weight: 600; }
 .group { margin-top: 20px; }
-.group h3 { margin: 0 0 4px; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.group h3 { margin: 0 0 4px; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); font-weight: 600; }
 ul.guests { list-style: none; margin: 0; padding: 0; }
 ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); min-width: 0; }
 .gname { font-family: var(--font-display); font-size: 1.2rem; min-width: 0; overflow-wrap: anywhere; }
@@ -107,9 +110,26 @@ ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0;
 .host form { display: grid; grid-template-columns: 1fr; gap: 12px; }
 @media (min-width: 520px) { .host form { grid-template-columns: 1fr 9rem 8rem auto; align-items: end; } }
 .foot { text-align: center; color: var(--mute); font-size: 0.85rem; }
+
+/* silver theme */
+.wrap { position: relative; z-index: 1; }
+#snow { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+h1 {
+  padding: 0 0.06em 0.1em;
+  background: linear-gradient(100deg, var(--silver-lo) 0%, var(--silver-hi) 28%, var(--silver) 50%, var(--silver-hi) 72%, var(--silver-lo) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: var(--silver); -webkit-text-fill-color: transparent;
+  animation: sheen 8s ease-in-out infinite;
+}
+@keyframes sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+.theme { font-family: var(--font-display); font-style: italic; font-size: clamp(1.15rem, 4.8vw, 1.5rem); line-height: 1.3; max-width: 24ch; text-wrap: balance; color: var(--silver); }
+@media (prefers-reduced-motion: reduce) { h1 { animation: none; } }
 </style>
 </head>
 <body>
+<canvas id="snow" aria-hidden="true"></canvas>
+
 <main class="wrap">
   <header class="hero">
     <svg class="tower" viewBox="0 0 240 156" role="img" aria-label="A pyramid of champagne coupes">
@@ -144,6 +164,7 @@ ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0;
     </svg>
     <p class="eyebrow">Austin &amp; Marissa invite you to</p>
     <h1>Tipsy Tinsel</h1>
+    <p class="theme">An evening in silver: shimmer, sparkle, and a little too much tinsel.</p>
     <p class="hosts">A holiday party with the best hosting vibes we can pour.</p>
   </header>
 
@@ -287,6 +308,47 @@ ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0;
 
   syncCount(); render(); load();
   setInterval(function () { if (!document.hidden) load(); }, 30000);
+})();
+</script>
+
+<script>
+(function () {
+  var cv = document.getElementById('snow');
+  if (!cv || !cv.getContext) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { cv.hidden = true; return; }
+  var ctx = cv.getContext('2d');
+  var W = 0, H = 0, flakes = [];
+  var color = (getComputedStyle(document.documentElement).getPropertyValue('--silver-hi') || '#f6f9fb').trim();
+  function make(init) {
+    return { x: Math.random() * W, y: init ? Math.random() * H : -8, r: 0.6 + Math.random() * 1.9, v: 0.25 + Math.random() * 0.6, a: 0.25 + Math.random() * 0.5, p: Math.random() * 6.28, s: 0.4 + Math.random() * 0.8 };
+  }
+  function size() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(Math.min(70, Math.max(28, W / 16)));
+    while (flakes.length < n) flakes.push(make(true));
+    flakes.length = n;
+  }
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = color;
+    for (var i = 0; i < flakes.length; i++) {
+      var f = flakes[i];
+      f.y += f.v; f.p += 0.012 * f.s;
+      if (f.y > H + 8) { flakes[i] = f = make(false); }
+      ctx.globalAlpha = f.a;
+      ctx.beginPath();
+      ctx.arc(f.x + Math.sin(f.p) * 14 * f.s, f.y, f.r, 0, 6.2832);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(tick);
+  }
+  size();
+  window.addEventListener('resize', size);
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
