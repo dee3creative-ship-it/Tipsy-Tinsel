@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tipsy Tinsel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500;1,6..96,700&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  /* Layout: one centered invitation column. Champagne tower up top, event details, RSVP card, live guest list, host-only tools at the bottom. */
+  --ink: #170a10;
+  --plum: #251119;
+  --line: #4d2d3b;
+  --cream: #f7ecd6;
+  --mute: #c4aca6;
+  --gold: #e5c37b;
+  --tinsel: #cfd8dc;
+  --blush: #eaa9b6;
+  --glow: rgba(229, 195, 123, 0.13);
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ink) radial-gradient(ellipse 80% 420px at 50% 0, var(--glow), transparent 70%) no-repeat;
+  color: var(--cream);
+  font: 400 16px/1.55 var(--font-body);
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+h1, h2 { font-family: var(--font-display); font-style: italic; font-weight: 500; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(3.2rem, 15vw, 5.6rem); line-height: 0.95; letter-spacing: -0.01em; color: var(--cream); }
+h2 { font-size: 1.75rem; line-height: 1.1; }
+.eyebrow { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+p { margin: 0; }
+
+/* hero */
+.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+.tower { width: min(300px, 78%); height: auto; overflow: visible; }
+.hosts { color: var(--mute); }
+.rule { width: 100%; height: 7px; opacity: 0.6; background: repeating-linear-gradient(100deg, var(--gold) 0 2px, transparent 2px 8px, var(--tinsel) 8px 9px, transparent 9px 15px); }
+.bubble { fill: var(--cream); opacity: 0; animation: rise 3.4s ease-in infinite; }
+.b2 { animation-delay: 0.9s; } .b3 { animation-delay: 1.7s; } .b4 { animation-delay: 2.4s; } .b5 { animation-delay: 0.4s; }
+.spark { fill: var(--tinsel); transform-box: fill-box; transform-origin: center; animation: twinkle 2.8s ease-in-out infinite; }
+.s2 { animation-delay: 1.1s; } .s3 { animation-delay: 1.9s; }
+@keyframes rise { 0% { opacity: 0; transform: translateY(6px); } 25% { opacity: 0.9; } 100% { opacity: 0; transform: translateY(-16px); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } }
+@media (prefers-reduced-motion: reduce) { .bubble, .spark { animation: none; opacity: 0.7; } }
+
+/* details */
+.details { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
+.row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+.row:last-child { border-bottom: 1px solid var(--line); }
+.row dt { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; padding-top: 0.3em; }
+.row dd { margin: 0; min-width: 0; }
+.big { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; }
+.sub { color: var(--mute); margin-top: 2px; }
+.cal { display: inline-block; margin-top: 8px; color: var(--gold); font-size: 0.9rem; text-underline-offset: 3px; }
+
+/* rsvp */
+.card { background: var(--plum); border: 1px solid var(--line); border-radius: 4px; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px; }
+.card h2 { margin-bottom: -4px; }
+.field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+label.lbl, .legend { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+input[type="text"], select {
+  width: 100%; font: inherit; color: var(--cream); background: var(--ink);
+  border: 1px solid var(--line); border-radius: 3px; padding: 12px 12px; min-height: 46px;
+}
+input[type="text"]::placeholder { color: var(--mute); opacity: 0.7; }
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, .seg input:focus-visible + label { outline: 2px solid var(--gold); outline-offset: 2px; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label {
+  display: flex; align-items: center; justify-content: center; text-align: center; min-height: 46px; padding: 8px 6px;
+  border: 1px solid var(--line); border-radius: 3px; cursor: pointer; font-weight: 500; font-size: 0.95rem; background: var(--ink);
+}
+.seg input:checked + label { background: var(--gold); color: var(--ink); border-color: var(--gold); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+button { font: inherit; cursor: pointer; border-radius: 3px; min-height: 46px; padding: 0 20px; }
+.primary { background: var(--gold); color: var(--ink); border: 1px solid var(--gold); font-weight: 600; letter-spacing: 0.02em; }
+.primary:disabled { opacity: 0.6; cursor: progress; }
+.ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+.msg { min-height: 1.4em; color: var(--gold); font-size: 0.95rem; }
+.msg.warn { color: var(--blush); }
+.copybox { width: 100%; font: inherit; font-size: 0.9rem; color: var(--cream); background: var(--ink); border: 1px dashed var(--line); border-radius: 3px; padding: 10px 12px; resize: none; }
+
+/* guest list */
+.listhead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.tally { color: var(--mute); font-variant-numeric: tabular-nums; }
+.tally b { color: var(--cream); font-weight: 600; }
+.group { margin-top: 20px; }
+.group h3 { margin: 0 0 4px; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+ul.guests { list-style: none; margin: 0; padding: 0; }
+ul.guests li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.gname { font-family: var(--font-display); font-size: 1.2rem; min-width: 0; overflow-wrap: anywhere; }
+.party { color: var(--mute); font-size: 0.9rem; white-space: nowrap; }
+.you { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); background: var(--tinsel); padding: 2px 6px; border-radius: 2px; font-weight: 600; }
+.rm { margin-left: auto; min-height: 36px; padding: 0 12px; font-size: 0.85rem; background: transparent; color: var(--blush); border: 1px solid var(--line); }
+.note { color: var(--mute); padding: 14px 0; }
+
+/* host tools */
+.host { border-top: 1px solid var(--line); padding-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+.host form { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 520px) { .host form { grid-template-columns: 1fr 9rem 8rem auto; align-items: end; } }
+.foot { text-align: center; color: var(--mute); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <svg class="tower" viewBox="0 0 240 156" role="img" aria-label="A pyramid of champagne coupes">
+      <defs>
+        <symbol id="coupe" viewBox="0 0 40 36" overflow="visible">
+          <path d="M1 2 H39 C39 15 30 23 20 23 C10 23 1 15 1 2Z" style="fill:var(--gold);fill-opacity:0.88;stroke:var(--tinsel);stroke-width:1.2"/>
+          <path d="M3 2 H37" style="stroke:var(--cream);stroke-width:1.4;stroke-linecap:round"/>
+          <rect x="19.2" y="23" width="1.6" height="9" style="fill:var(--tinsel)"/>
+          <ellipse cx="20" cy="33" rx="9" ry="2.2" style="fill:var(--tinsel)"/>
+        </symbol>
+        <path id="star" d="M0 -6 L1.4 -1.4 L6 0 L1.4 1.4 L0 6 L-1.4 1.4 L-6 0 L-1.4 -1.4Z"/>
+      </defs>
+      <ellipse cx="120" cy="143" rx="112" ry="6" style="fill:var(--plum);stroke:var(--line)"/>
+      <use href="#coupe" x="34" y="104" width="40" height="36"/>
+      <use href="#coupe" x="78" y="104" width="40" height="36"/>
+      <use href="#coupe" x="122" y="104" width="40" height="36"/>
+      <use href="#coupe" x="166" y="104" width="40" height="36"/>
+      <use href="#coupe" x="56" y="72" width="40" height="36"/>
+      <use href="#coupe" x="100" y="72" width="40" height="36"/>
+      <use href="#coupe" x="144" y="72" width="40" height="36"/>
+      <use href="#coupe" x="78" y="40" width="40" height="36"/>
+      <use href="#coupe" x="122" y="40" width="40" height="36"/>
+      <use href="#coupe" x="100" y="8" width="40" height="36"/>
+      <circle class="bubble b1" cx="114" cy="16" r="1.6"/>
+      <circle class="bubble b2" cx="124" cy="18" r="1.3"/>
+      <circle class="bubble b3" cx="119" cy="14" r="1.1"/>
+      <circle class="bubble b4" cx="132" cy="17" r="1.4"/>
+      <circle class="bubble b5" cx="108" cy="18" r="1.1"/>
+      <use class="spark s1" href="#star" x="26" y="40"/>
+      <use class="spark s2" href="#star" x="216" y="26"/>
+      <use class="spark s3" href="#star" x="208" y="82"/>
+    </svg>
+    <p class="eyebrow">Austin &amp; Marissa invite you to</p>
+    <h1>Tipsy Tinsel</h1>
+    <p class="hosts">A holiday party with the best hosting vibes we can pour.</p>
+  </header>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <dl class="details">
+    <div class="row">
+      <dt>When</dt>
+      <dd>
+        <p class="big">Saturday, December 12, 2026</p>
+        <p class="sub">6 PM until whenever you leave</p>
+        <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Tipsy+Tinsel&amp;dates=20261212T180000/20261213T000000&amp;ctz=America/Detroit&amp;location=2057+Paris+Ave+SE&amp;details=Holiday+party+hosted+by+Austin+and+Marissa">Add to Google Calendar</a>
+      </dd>
+    </div>
+    <div class="row">
+      <dt>Where</dt>
+      <dd><p class="big">2057 Paris Ave SE</p></dd>
+    </div>
+    <div class="row">
+      <dt>Pouring</dt>
+      <dd>
+        <p class="big">A champagne tower and sabering</p>
+        <p class="sub">Drink stations and light apps all night.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <section aria-labelledby="rsvp-h">
+    <form class="card" id="rsvp" novalidate>
+      <h2 id="rsvp-h">Will you be there?</h2>
+      <div class="field">
+        <label class="lbl" for="guest-name">Your name</label>
+        <input type="text" id="guest-name" name="name" autocomplete="name" placeholder="First and last name" maxlength="60">
+      </div>
+      <div class="field" style="position:absolute;left:-9999px" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" tabindex="-1" autocomplete="off"></div>
+      <fieldset class="field">
+        <legend class="legend" style="margin-bottom:7px">Your answer</legend>
+        <div class="seg">
+          <input type="radio" id="st-yes" name="status" value="yes" checked><label for="st-yes">I'm in</label>
+          <input type="radio" id="st-maybe" name="status" value="maybe"><label for="st-maybe">Maybe</label>
+          <input type="radio" id="st-no" name="status" value="no"><label for="st-no">Can't make it</label>
+        </div>
+      </fieldset>
+      <div class="field" id="count-field">
+        <label class="lbl" for="guest-count">How many are coming, including you</label>
+        <select id="guest-count" name="count">
+          <option value="1">Just me</option>
+          <option value="2">2 people</option>
+          <option value="3">3 people</option>
+          <option value="4">4 people</option>
+          <option value="5">5 people</option>
+          <option value="6">6 people</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button class="primary" type="submit" id="submit-btn">Send RSVP</button>
+      </div>
+      <p class="msg" id="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section aria-labelledby="list-h">
+    <div class="listhead">
+      <h2 id="list-h">Guest list</h2>
+      <p class="tally" id="tally" aria-live="polite"></p>
+    </div>
+    <div id="list"><p class="note">Loading the guest list...</p></div>
+  </section>
+
+  <p class="foot">Hosted by Austin &amp; Marissa</p>
+</main>
+<script>
+(function () {
+  var SUPABASE_URL = 'https://hegsthidkjwfhfwdzzhp.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_jCSSrvCv2txJ7ABl4pbWGg_2RC15s44';
+  var TABLE = SUPABASE_URL + '/rest/v1/tipsy_rsvps';
+  var HEADERS = { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' };
+  var $ = function (id) { return document.getElementById(id); };
+  var S = { rows: [], list: 'loading', saving: false };
+  var LABEL = { yes: 'Going', maybe: 'Maybe' };
+
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function setMsg(text, warn) { var m = $('form-msg'); m.textContent = text || ''; m.className = 'msg' + (warn ? ' warn' : ''); }
+  function status() { var c = document.querySelector('#rsvp input[name="status"]:checked'); return c ? c.value : 'yes'; }
+  function syncCount() { $('count-field').hidden = status() === 'no'; }
+  Array.prototype.forEach.call(document.querySelectorAll('#rsvp input[name="status"]'), function (r) { r.addEventListener('change', syncCount); });
+
+  function render() {
+    var list = $('list'), tally = $('tally');
+    list.textContent = ''; tally.textContent = '';
+    if (S.list === 'loading') { list.appendChild(el('p', 'note', 'Loading the guest list...')); return; }
+    if (S.list === 'error') { list.appendChild(el('p', 'note', 'The guest list can\'t be reached right now. Your RSVP can still go through.')); return; }
+    // latest answer per name wins, so a changed mind replaces the old entry
+    var seen = {}, rows = [];
+    S.rows.forEach(function (r) { var k = r.name.trim().toLowerCase(); if (!seen[k]) { seen[k] = 1; rows.push(r); } });
+    rows.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    var sum = function (s) { return rows.filter(function (r) { return r.status === s; }).reduce(function (t, r) { return t + (r.party_size || 1); }, 0); };
+    tally.appendChild(el('b', null, String(sum('yes')))); tally.appendChild(document.createTextNode(' going · '));
+    tally.appendChild(el('b', null, String(sum('maybe')))); tally.appendChild(document.createTextNode(' maybe'));
+    var shown = rows.filter(function (r) { return r.status !== 'no'; });
+    if (!shown.length) { list.appendChild(el('p', 'note', 'No RSVPs yet. Yours will be the first name on the list.')); return; }
+    ['yes', 'maybe'].forEach(function (s) {
+      var items = shown.filter(function (r) { return r.status === s; });
+      if (!items.length) return;
+      var g = el('div', 'group'); g.appendChild(el('h3', null, LABEL[s]));
+      var ul = el('ul', 'guests');
+      items.forEach(function (r) {
+        var li = el('li'); li.appendChild(el('span', 'gname', r.name));
+        if (r.party_size > 1) li.appendChild(el('span', 'party', 'party of ' + r.party_size));
+        ul.appendChild(li);
+      });
+      g.appendChild(ul); list.appendChild(g);
+    });
+  }
+
+  function load() {
+    return fetch(TABLE + '?select=name,status,party_size,created_at&order=created_at.desc&limit=500', { headers: HEADERS })
+      .then(function (res) { if (!res.ok) throw new Error('load'); return res.json(); })
+      .then(function (data) { S.rows = data; S.list = 'ready'; render(); })
+      .catch(function () { if (S.list !== 'ready') { S.list = 'error'; render(); } });
+  }
+
+  $('rsvp').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (S.saving) return;
+    if ($('website').value) return; // honeypot
+    var name = $('guest-name').value.trim();
+    if (!name) { setMsg('Add your name so we know who to pour for.', true); $('guest-name').focus(); return; }
+    var st = status();
+    var size = st === 'no' ? 1 : Number($('guest-count').value);
+    S.saving = true; $('submit-btn').disabled = true; setMsg('Saving...');
+    fetch(TABLE, { method: 'POST', headers: Object.assign({ Prefer: 'return=minimal' }, HEADERS), body: JSON.stringify({ name: name, status: st, party_size: size }) })
+      .then(function (res) {
+        if (!res.ok) throw new Error('save');
+        setMsg(st === 'yes' ? 'You\'re on the list. See you December 12.' : st === 'maybe' ? 'Marked as maybe. Send the same form again when you know.' : 'Got it. We\'ll miss you.');
+        return load();
+      })
+      .catch(function () { setMsg('Couldn\'t save your RSVP. Check your connection and try again, or text Austin or Marissa.', true); })
+      .then(function () { S.saving = false; $('submit-btn').disabled = false; });
+  });
+
+  syncCount(); render(); load();
+  setInterval(function () { if (!document.hidden) load(); }, 30000);
+})();
+</script>
+</body>
+</html>
