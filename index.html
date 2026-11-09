@@ -10,7 +10,7 @@
   /* Layout: one centered invitation column. Champagne tower up top, event details, RSVP card, live guest list, host-only tools at the bottom. */
   --ink: #170611;
   --plum: #2c0a1d;
-  --line: #66183f;
+  --line: #7d2552;
   --cream: #eef1f5;
   --mute: #d2b0c1;
   --tinsel: #cfd8dc;
@@ -21,9 +21,12 @@
   --rose: #ee9cbd;
   --cran: #b00149;
   --cran-hi: #d8337a;
-  --burg: #4c0a2b;
-  --burg-deep: #25051a;
-  --cran-glow: rgba(176, 1, 73, 0.34);
+  --burg: #5d1038;
+  --burg-deep: #3c0a27;
+  --cran-glow: rgba(216, 51, 122, 0.26);
+  --bg-top: #440c2d;
+  --bg-mid: #2d0a1c;
+  --bg-bot: #380a22;
   --copper: #d68f78;
   --copper-dk: #a35d4d;
   --jade: #a9d3b4;
@@ -35,8 +38,8 @@
 }
 * { box-sizing: border-box; }
 body {
-  background-color: var(--ink);
-  background-image: radial-gradient(ellipse 90% 420px at 50% 0, var(--cran-glow), transparent 72%), radial-gradient(ellipse 70% 320px at 50% 100%, var(--cran-glow), transparent 75%);
+  background-color: var(--bg-mid);
+  background-image: radial-gradient(ellipse 90% 460px at 50% 0, var(--cran-glow), transparent 72%), radial-gradient(ellipse 80% 360px at 50% 100%, var(--cran-glow), transparent 75%), linear-gradient(180deg, var(--bg-top), var(--bg-mid) 42%, var(--bg-bot));
   background-repeat: no-repeat;
   color: var(--cream);
   font: 400 16px/1.55 var(--font-body);
