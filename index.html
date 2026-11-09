@@ -10,7 +10,7 @@
   /* Layout: one centered invitation column. Champagne tower up top, event details, RSVP card, live guest list, host-only tools at the bottom. */
   --ink: #170611;
   --plum: #2c0a1d;
-  --line: #7f3459;
+  --line: #66183f;
   --cream: #eef1f5;
   --mute: #d2b0c1;
   --tinsel: #cfd8dc;
@@ -18,15 +18,12 @@
   --silver: #d3dbe1;
   --silver-hi: #f6f9fb;
   --silver-lo: #8e9ba6;
-  --rose: #e6a3bf;
-  --cran: #9d2655;
-  --cran-hi: #c8467f;
-  --burg: #5a1f3e;
-  --burg-deep: #3b1429;
-  --cran-glow: rgba(176, 70, 120, 0.24);
-  --bg-top: #4a1832;
-  --bg-mid: #321222;
-  --bg-bot: #3b1428;
+  --rose: #ee9cbd;
+  --cran: #b00149;
+  --cran-hi: #d8337a;
+  --burg: #4c0a2b;
+  --burg-deep: #25051a;
+  --cran-glow: rgba(176, 1, 73, 0.34);
   --copper: #d68f78;
   --copper-dk: #a35d4d;
   --jade: #a9d3b4;
@@ -38,8 +35,8 @@
 }
 * { box-sizing: border-box; }
 body {
-  background-color: var(--bg-mid);
-  background-image: radial-gradient(ellipse 90% 460px at 50% 0, var(--cran-glow), transparent 72%), radial-gradient(ellipse 80% 360px at 50% 100%, var(--cran-glow), transparent 75%), linear-gradient(180deg, var(--bg-top), var(--bg-mid) 42%, var(--bg-bot));
+  background-color: var(--ink);
+  background-image: radial-gradient(ellipse 90% 420px at 50% 0, var(--cran-glow), transparent 72%), radial-gradient(ellipse 70% 320px at 50% 100%, var(--cran-glow), transparent 75%);
   background-repeat: no-repeat;
   color: var(--cream);
   font: 400 16px/1.55 var(--font-body);
@@ -453,7 +450,7 @@ h1 {
   var W = 0, H = 0, flakes = [];
   var cs = getComputedStyle(document.documentElement);
   var color = (cs.getPropertyValue('--silver-hi') || '#f6f9fb').trim();
-  var rose = (cs.getPropertyValue('--rose') || '#e6a3bf').trim();
+  var rose = (cs.getPropertyValue('--rose') || '#ee9cbd').trim();
   function make(init) {
     return { x: Math.random() * W, y: init ? Math.random() * H : -8, r: 0.6 + Math.random() * 1.9, v: 0.25 + Math.random() * 0.6, a: 0.25 + Math.random() * 0.5, p: Math.random() * 6.28, s: 0.4 + Math.random() * 0.8, c: Math.random() < 0.16 };
   }
